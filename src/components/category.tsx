@@ -33,8 +33,8 @@ const CategoryPage = () => {
   
 
   return (
-    <section className="text-gray-600 body-font pb-[100px] border-b-2" >
-      <div className="container px-5 py-24 mx-auto">
+    <section className="text-gray-600 body-font py-24 border-b-2">
+      <div className="container px-5  mx-auto">
         <div className="flex items-center justify-center gap-4 mb-10">
           <BiCategoryAlt className="text-[35px] font-semibold bg-blue-500 text-white rounded" />
           <h1 className="text-[35px] font-semibold ">Product Category</h1>

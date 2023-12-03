@@ -149,7 +149,7 @@ const LatestProducts = () => {
           className="mySwiper"
         >
           {products?.map((product) => (
-            <SwiperSlide key={product?._id}>
+            <SwiperSlide  key={product?._id}>
               <ProductCard product={product} />
             </SwiperSlide>
           ))}
