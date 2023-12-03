@@ -2,6 +2,7 @@ import Link from "next/link";
 import CustomImage from "./image";
 import ProductType from "@/types/product";
 import { toast } from "react-toastify";
+import { MdOutlineShoppingCartCheckout } from "react-icons/md";
 import { CART } from "@/constants";
 
 const ProductCard: React.FC<{ product: ProductType }> = ({ product }) => {
@@ -106,12 +107,21 @@ const ProductCard: React.FC<{ product: ProductType }> = ({ product }) => {
       {/* <div className="App  translate-x-[20px] translate-y-[-20px]  absolute top-0 right-0">
         <Heart isClick={isClick} onClick={() => getLike(product?._id)} />
       </div> */}
-      <button
-        onClick={handleClick}
-        className="button w-full  hover:bg-blue-600 hover:text-white border-blue-600 bg-transparent text-black"
-      >
-        Add to bag
-      </button>
+      <div className="mt-[5px] flex items-center justify-between gap-6">
+        <button
+          onClick={handleClick}
+          className="border pr-2 pl-2 pt-2 pb-2 text-center rounded font-semibold transition duration-200 ease-out   hover:bg-blue-600 hover:text-white text-[12px] border-blue-600 bg-transparent text-black"
+        >
+          <MdOutlineShoppingCartCheckout className='text-[26px] text-center' />
+        </button>
+        <Link
+          href={`product/${product?._id}`}
+          // onClick={() => }
+          className="border pt-2 pb-2 rounded font-semibold text-[17px] text-center transition duration-200 ease-out w-full bg-transparent border-blue-600 hover:bg-blue-600 hover:text-white hover:border-transparent"
+        >
+          View full details
+        </Link>
+      </div>
     </div>
   );
 };
