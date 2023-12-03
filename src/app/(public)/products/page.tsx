@@ -10,7 +10,7 @@ import request from "@/server";
 import ProductCard from "@/components/productCard";
 import LoadingPage from "@/components/LoadingPage";
 import Searching from "@/components/Searching";
-import Link from "next/link";
+import Pagination from "@/components/pagination";
 
 const AllProduct = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
@@ -19,13 +19,11 @@ const AllProduct = () => {
   const [page, setPage] = useState(1);
   const currency = total / +LIMIT;
 
-  console.log(currency);
 
   useEffect(() => {
     getProducts();
   }, [page]);
 
-  console.log(page);
 
   async function getProducts() {
     setLoading(true);
@@ -46,20 +44,9 @@ const AllProduct = () => {
       setLoading(false);
     }
   }
-  const handlePrevious = () => {
-    if (page === 1) {
-      setPage(1);
-    } else {
-      setPage((prev) => prev - 1);
-    }
-  };
-  const handleNext = () => {
-    if (page === currency) {
-      setPage(currency);
-    } else {
-      setPage((prev) => prev  + 1);
-    }
-  };
+
+    
+ 
 
   return (
     <Fragment>
@@ -82,7 +69,7 @@ const AllProduct = () => {
               ))}
             </div>
 
-            <div className="flex items-center justify-between gap-4 mt-[25px] p-10">
+            {/* <div className="flex items-center justify-between gap-4 mt-[25px] p-10">
               <button
                 onClick={handlePrevious}
                 className={`flex items-center justify-center px-4 h-10 me-3 text-base font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
@@ -129,6 +116,14 @@ const AllProduct = () => {
                   />
                 </svg>
               </button>
+            </div> */}
+            <div className="p-6 pt-0">
+            
+              <Pagination
+                setPage={setPage}
+                page={page}
+                currency={currency}
+              />
             </div>
           </div>
         </section>

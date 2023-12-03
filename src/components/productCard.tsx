@@ -1,54 +1,83 @@
 import Link from "next/link";
 import CustomImage from "./image";
 import ProductType from "@/types/product";
+import { toast } from "react-toastify";
+import { CART } from "@/constants";
 
 const ProductCard: React.FC<{ product: ProductType }> = ({ product }) => {
   // const [isClick, setClick] = useState(false);
   // const [productId, setProductId] = useState<ProductType[]>([]);
   // const [loading, setLoading] = useState(false);
 
-//   useEffect(() => {}, []);
+  //   useEffect(() => {}, []);
 
-//  async function getLike(id: string) {
-//    setClick(!isClick);
-   
-   
-//     const products: ProductType[] =
-//       JSON.parse(localStorage.getItem("like") as string) || [];
-//       console.log([products]);
-//     const isExestProducts = products.find((el) => el._id === product?._id);
-    
-//     if (isExestProducts && isClick) {
-//       const updatedData = products.map((el) => {
-//         if (el._id === product?._id) {
-//           return {
-//             ...el,
-//             like: +1
-//           };
-//         }
+  //  async function getLike(id: string) {
+  //    setClick(!isClick);
 
-//         return el;
-//       });
-//       localStorage.setItem("like", JSON.stringify(updatedData));
-//     } else {
-//       const data = [...products, { ...product, like: 1 }];
-//       localStorage.setItem("like", JSON.stringify(data));
-//     }
-//     toast("❤️", {
-//       position: "top-center",
-//       autoClose: 5000,
-//       hideProgressBar: false,
-//       closeOnClick: true,
-//       pauseOnHover: true,
-//       draggable: true,
-//       progress: undefined,
-//       theme: "light",
-//     });
-   
-  
-//  }
+  //     const products: ProductType[] =
+  //       JSON.parse(localStorage.getItem("like") as string) || [];
+  //       console.log([products]);
+  //     const isExestProducts = products.find((el) => el._id === product?._id);
 
+  //     if (isExestProducts && isClick) {
+  //       const updatedData = products.map((el) => {
+  //         if (el._id === product?._id) {
+  //           return {
+  //             ...el,
+  //             like: +1
+  //           };
+  //         }
 
+  //         return el;
+  //       });
+  //       localStorage.setItem("like", JSON.stringify(updatedData));
+  //     } else {
+  //       const data = [...products, { ...product, like: 1 }];
+  //       localStorage.setItem("like", JSON.stringify(data));
+  //     }
+  //     toast("❤️", {
+  //       position: "top-center",
+  //       autoClose: 5000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "light",
+  //     });
+
+  //  }
+  const handleClick = () => {
+    const products: ProductType[] =
+      JSON.parse(localStorage.getItem(CART) as string) || [];
+    const isExestProducts = products.find((el) => el._id === product?._id);
+    if (isExestProducts) {
+      const updatedData = products.map((el) => {
+        if (el._id === product?._id) {
+          return {
+            ...el,
+            soni: el.soni + 1,
+          };
+        }
+
+        return el;
+      });
+      localStorage.setItem(CART, JSON.stringify(updatedData));
+    } else {
+      const data = [...products, { ...product, soni: 1 }];
+      localStorage.setItem(CART, JSON.stringify(data));
+    }
+    toast(" ✅ Product Added to Your Bag!", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
 
   return (
     <div className="h-96 flex flex-col p-6 rounded-lg group relative  transition-transform ease-out duration-200 border ">
@@ -77,6 +106,12 @@ const ProductCard: React.FC<{ product: ProductType }> = ({ product }) => {
       {/* <div className="App  translate-x-[20px] translate-y-[-20px]  absolute top-0 right-0">
         <Heart isClick={isClick} onClick={() => getLike(product?._id)} />
       </div> */}
+      <button
+        onClick={handleClick}
+        className="button w-full  hover:bg-blue-600 hover:text-white border-blue-600 bg-transparent text-black"
+      >
+        Add to bag
+      </button>
     </div>
   );
 };
