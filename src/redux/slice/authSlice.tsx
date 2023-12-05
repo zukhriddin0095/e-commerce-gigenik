@@ -6,7 +6,7 @@ const token = getCookie(ECOMMERCE_ROLE);
 
 const initialState: { isAuthenticated: boolean; role: number | null } = {
   isAuthenticated: Boolean(getCookie(ECOMMERCE_TOKEN)),
-  role: token ? +token : null,
+  role: token ? +token : null,    
 };
 
 export const authSlice = createSlice({

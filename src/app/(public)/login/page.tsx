@@ -43,6 +43,9 @@ const Login = () => {
       router.push("/admin");
       dispatch(setIsAuthenticated(true));
       dispatch(setRole(user.role));
+      if (user.role === 1) {
+        router.push("/admin");
+      }
     } catch (er) {
       toast.error("server error: ");
     } finally {
