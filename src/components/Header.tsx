@@ -64,24 +64,28 @@ const PublicHeader = () => {
       >
         <nav className="flex flex-col gap-4 mt-10  pb-2">
           <Link
+            onClick={() => setToggle(!toggle)}
             className="hover:pl-3 duration-150 hover:text-blue-700 hover:font-bold pb-3 border-b"
             href="/"
           >
             Home
           </Link>
           <Link
+            onClick={() => setToggle(!toggle)}
             className="hover:pl-3 duration-150 hover:text-blue-700 hover:font-bold pb-3 border-b"
             href="/products"
           >
             All products
           </Link>
           <Link
+            onClick={() => setToggle(!toggle)}
             className="hover:pl-3 duration-150 hover:text-blue-700 hover:font-bold pb-3 border-b"
             href="/about"
           >
             about
           </Link>
           <Link
+            onClick={() => setToggle(!toggle)}
             className="hover:pl-3 duration-150 hover:text-blue-700 hover:font-bold pb-3 border-b"
             href="/register"
           >
@@ -90,12 +94,14 @@ const PublicHeader = () => {
         </nav>
         <div className="flex flex-col gap-3 mt-6">
           <Link
+            onClick={() => setToggle(!toggle)}
             className="pr-3 pl-3 pb-2 pt-2 flex justify-center border bg-blue-500 text-white rounded-md hover:border hover:bg-transparent hover:text-black duration-200"
             href="/login"
           >
             Sign Up
           </Link>
           <Link
+            onClick={() => setToggle(!toggle)}
             className="border pr-6 pl-6 pb-2 pt-2 flex justify-center rounded-md"
             href="/shoping-card"
           >
