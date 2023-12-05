@@ -127,11 +127,11 @@ const LatestProducts = () => {
           breakpoints={{
             350: {
               width: 450,
-              slidesPerView: 1,
+              slidesPerView: 1.5,
             },
             450: {
               width: 576,
-              slidesPerView: 1.5,
+              slidesPerView: 2,
             },
             576: {
               width: 950,

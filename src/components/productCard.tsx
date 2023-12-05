@@ -81,7 +81,7 @@ const ProductCard: React.FC<{ product: ProductType }> = ({ product }) => {
   };
 
   return (
-    <div className="border h-96 flex flex-col p-6 rounded-lg group relative  transition-transform ease-out duration-200 border-blue-500 ">
+    <div className="border w-full h-96 flex flex-col p-6 rounded-lg group relative  transition-transform ease-out duration-200 border-blue-500 ">
       <Link
         href={`/product/${product?._id}`}
         className="relative max-h-72 flex-1 border-b "
