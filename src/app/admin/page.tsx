@@ -1,7 +1,8 @@
+ 
 
 const AdminPAge = () => {
   return (
-    <div>AdminPAge</div>
+    <div className="">AdminPAge</div>
   )
 }
 

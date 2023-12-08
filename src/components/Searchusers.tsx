@@ -1,28 +1,27 @@
 "use client";
 import request from "@/server";
-import ProductType from "@/types/product";
+import UsersType from "@/types/UserType";
 import React, { Dispatch, SetStateAction, useEffect } from "react";
 
 interface SearchingProps {
-  setProducts: Dispatch<SetStateAction<ProductType[]>>;
+  setUsers: Dispatch<SetStateAction<UsersType[]>>;
   setLoading: Dispatch<SetStateAction<boolean>>;
 }
 import { useState } from "react";
 
-const Searching: React.FC<SearchingProps> = ({ setProducts, setLoading }) => {
+const SearchingUsers: React.FC<SearchingProps> = ({ setUsers, setLoading }) => {
   const [query, setQuery] = useState("");
 
   const handeSearch = async () => {
-
     setLoading(true);
     try {
       const {
-        data: { products },
-      } = await request.get(`product?search=${query}`);
-      setProducts(products);
+        data: { users },
+      } = await request.get(`user?search=${query}`);
+      setUsers(users);
     } catch (err) {
       console.log("error", err);
-    }finally {
+    } finally {
       setLoading(false);
     }
   };
@@ -45,4 +44,4 @@ const Searching: React.FC<SearchingProps> = ({ setProducts, setLoading }) => {
   );
 };
 
-export default Searching;
+export default SearchingUsers;

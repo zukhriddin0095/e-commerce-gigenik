@@ -606,7 +606,6 @@ const About = () => {
                 </div>
               </div>
             </div>
-
             <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
               <div className="mt-10 lg:mt-0">
                 <span className="block mb-4 text-lg font-semibold text-primary">
