@@ -9,10 +9,28 @@ import Image from "next/image";
 import ImageLogo from "../../public/logo.png";
 import NavLink from "@/shared";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import ProductType from "@/types/product";
+import { CART } from "@/constants";
 
 const PublicHeader = () => {
   const [toggle, setToggle] = useState(false);
+  // const [products, setProducts] = useState<ProductType[]>([]);
+
+  // useEffect(() => {
+  //   if (typeof localStorage !== "undefined") {
+  //     const storedCarts =
+  //       JSON.parse(localStorage.getItem(CART) as string) || [];
+  //     setProducts(storedCarts);
+  //   }
+  // }, []);
+
+  // useEffect(() => {}, [products]);
+
+  // useEffect(() => {
+  //   const storedCart = JSON.parse(localStorage.getItem(CART) || "[]");
+  //   setProducts(storedCart);
+  // }, []);
   return (
     <header className="text-gray-600 body-font fixed w-full top-0 bg-white z-10 shadow">
       <div className="container mx-auto flex  justify-between items-center pr-3 pl-3 md:p-5 ">
@@ -43,6 +61,9 @@ const PublicHeader = () => {
           <Link href="/shoping-card">
             <button className="relative border-blue-600 inline-flex items-center bg-gray-100 border-0 py-[5px]  px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
               <MdOutlineShoppingCartCheckout className=" text-[25px] " />
+              {/* <h1 className="absolute -top-2 rounded-lg -right-2 bg-red-500 text-white px-1 ">
+                {products?.length}
+              </h1> */}
             </button>
           </Link>
         </div>

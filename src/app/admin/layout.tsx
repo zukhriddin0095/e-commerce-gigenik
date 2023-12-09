@@ -13,9 +13,17 @@ import { FaUsers, FaCcAmazonPay } from "react-icons/fa";
 import { TbLogout2 } from "react-icons/tb";
 import Image from "next/image";
 import ImageLogo from "../../../public/logo.png";
+import { useAppSelector } from "@/redux/hooks";
+import { useRouter, redirect } from "next/navigation";
+import { setIsAuthenticated } from "@/redux/slice/authSlice";
+import { deleteCookie } from "cookies-next";
+import { ECOMMERCE_ROLE, ECOMMERCE_TOKEN } from "@/constants";
+import ROLES from "@/roles";
 
 const AdminLayout = ({ children }: childrenType) => {
   const [activeMenuItem, setActiveMenuItem] = useState("/admin/dashboard");
+  const { isAuthenticated, role } = useAppSelector((state) => state.auth);
+  const router = useRouter();
 
   const handleMenuItemClick = (active: string) => {
     setActiveMenuItem(active);
@@ -25,6 +33,20 @@ const AdminLayout = ({ children }: childrenType) => {
     const pathname = location.pathname;
     setActiveMenuItem(pathname);
   }, []);
+
+  const logout = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsAuthenticated(false);
+    deleteCookie(ECOMMERCE_TOKEN);
+    deleteCookie(ECOMMERCE_ROLE);
+    router.push("/login");
+  };
+
+   useEffect(() => {
+     if (!isAuthenticated || ROLES.ADMIN !== role) {
+       redirect("/login");
+     }
+   }, [isAuthenticated, role]);
 
   return (
     <Fragment>
@@ -148,18 +170,30 @@ const AdminLayout = ({ children }: childrenType) => {
               <MdOutlineSettings className="text-[35px] md:text-[25px] text-blue-800" />{" "}
               <span className="hidden md:block text-blue-800">Setting</span>
             </Link>
-            <Link
+            <button
+              onClick={(e) => logout(e)}
               className="flex items-center justify-center md:justify-start   gap-2 "
-              href="/admin/login"
             >
               <TbLogout2 className="text-[35px] md:text-[25px] text-red-700" />{" "}
               <span className="hidden md:block text-red-700">Loagout</span>
-            </Link>
+            </button>
           </div>
         </div>
       </section>
       <section className="fixed w-full h-[60px] pl-4 bg-slate-50 z-10  top-0 ml-[100px] md:ml-[260px]  bg-whit border-b shadow-md  transition-all duration-300 rounded-bl">
-        <div className=""></div>
+        <div className="flex items-center gap-6 mt-5">
+          <h1 className="text-gray-800 ml-1 text-bold">
+            E-commerce-adminPanel
+          </h1>
+          <Link
+            href="https://t.me/zukhriddin0095"
+            className="text-blue-600 ml-1 text-bold"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            @Zuhriddin
+          </Link>
+        </div>
       </section>
       <section className=" mt-[65px] ml-[100px] md:ml-[250px] pl-4  transition-all duration-300 ">
         {children}

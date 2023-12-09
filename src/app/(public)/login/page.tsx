@@ -44,7 +44,7 @@ const Login = () => {
       dispatch(setIsAuthenticated(true));
       dispatch(setRole(user.role));
       if (user.role === 1) {
-        router.push("/admin");
+        router.push("/admin/dashboard");
       }
     } catch (er) {
       toast.error("server error: ");
